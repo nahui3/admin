@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'files',
 ]
 
 MIDDLEWARE = [
@@ -113,3 +114,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/stable/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# Путь к общей директории файлов для Go сервиса
+import os
+FILES_BASE_DIR = os.getenv('FILES_BASE_DIR')
+if not FILES_BASE_DIR:
+    FILES_BASE_DIR = BASE_DIR.parent / 'files'
+FILES_BASE_DIR = Path(FILES_BASE_DIR)
